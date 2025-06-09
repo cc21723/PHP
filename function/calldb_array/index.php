@@ -56,36 +56,60 @@
     <div class="shape-block">
         <?php
 
-
-
         // print_r(all('items'));
         // $rows = all('items');
         // dd($rows);
-
+        
         // $rows = all('sales');
         // dd($rows);
-
-        // // 滿足特定條件的多筆資料放到後台
+        
         // $sales = all('sales', " where quantity >=2");
         // dd($sales);
+        
+        //$rows= all('sales',['quantity'=>2]);
+        //dd($rows);
+        
+        $sales = all('sales', ['quantity' => 2], 'ORDER BY id desc');
+        dd($sales);
 
         // $all = q("SELECT name, price FROM items ORDER BY price");
         // dd($all);
-
+        
         //find() 回傳資料表指定id的資料
-        dd(find('items', 3));
-        dd(find('items', ['name' => '蛋餅', 'stock' => 50]));
-
+        // dd(find('items', 3));
+        // dd(find('items', ['name' => '蛋餅', 'stock' => 50]));
+        
+        // update() 給定資料表的條件後，會去更新相應的資料。
+        // $row = find('items', 5);
+        // dd($row);
+        // $row['cost'] = 20;
+        // $row['price'] = 45;
+        // dd($row);
+        // update("items", $row);
+        
+        //insert()給定資料內容後，會去新增資料到資料表
+        // $data = [
+        //     'name' => '銅板早餐',
+        //     'cost' => 30,
+        //     'stock' => 100,
+        //     'price' => 50
+        // ];
+        // insert('items', $data);
+        
+        //save() 合併update + insert
+        //如果id存在就改資料 不存在就新增
+        // $data = [
+        //     'id' => 12,
+        //     'name' => '銅板價早餐',
+        //     'cost' => 25,
+        //     'stock' => 100,
+        //     'price' => 50
+        // ];
+        // save('items', $data);
         
 
-
-        // update() 給定資料表的條件後，會去更新相應的資料。
-        $row = find('items', 5);
-        dd($row);
-        $row['cost'] = 20;
-        $row['price'] = 45;
-        dd($row);
-        update("items", $row);
+        //del() 給定條件後，會去刪除指定的資料
+        del('items',['cost'=>30]);
         ?>
     </div>
 

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>資料庫練習</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 2rem;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to bottom right, #fef6fa, #e3f4f3);
+            color: #5f4b66;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            color: #7a5c86;
+            margin-bottom: 1.5rem;
+            text-shadow: 1px 1px 3px rgba(180, 130, 160, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            margin-top: 3rem;
+            margin-bottom: 1rem;
+            color: #856a84;
+            text-align: center;
+        }
+
+        .link-container {
+            background-color: #fff9f5;
+            padding: 2rem 3rem;
+            border-radius: 25px;
+            box-shadow: 0 0 20px rgba(200, 150, 180, 0.15);
+            /* width: 50%; */
+            max-width: 768px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 0.8rem;
+        }
+
+        li a {
+            display: inline-block;
+            padding: 0.6rem 1rem;
+            text-align: center;
+            background-color: #fce4ec;
+            color: #5c4b51;
+            text-decoration: none;
+            font-size: 1rem;
+            border-radius: 20px;
+            box-shadow: 2px 2px 8px rgba(216, 167, 177, 0.3);
+            transition: all 0.3s ease;
+            min-width: 150px;
+        }
+
+        li a:hover {
+            background-color: #f8bbd0;
+            transform: scale(1.03);
+        }
+
+        hr {
+            border: none;
+            border-top: 3px dashed #d8a7b1;
+            margin: 2.5rem auto;
+            width: 80%;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>資料庫練習</h1>
+
+    <!-- 第一區：基本功能 -->
+    <div class="section-title">📁 基本功能</div>
+    <div class="link-container">
+        <ul>
+            <li><a href="./basic/var/index.php">變數</a></li>
+            <li><a href="./basic/select/index.php">判斷式</a></li>
+            <li><a href="./basic/loop/index.php">迴圈-重複結構</a></li>
+            <li><a href="./basic/loop/starts.php">迴圈-畫星星</a></li>
+            <li><a href="./basic/array/index.php">陣列</a></li>
+            <li><a href="./basic/string/index.php">字串</a></li>
+            <li><a href="./basic/datetime/index.php">時間及日期處理</a></li>
+            <li><a href="./basic/datetime/calendar.php">線上月曆</a></li>
+            <li><a href="./basic/datetime/calendar2.php">線上月曆2</a></li>
+            <li><a href="./basic/datetime/calendar3.php">萬年曆</a></li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- 第二區：進階功能 -->
+    <div class="section-title">🧪 傳接值</div>
+    <div class="link-container">
+        <ul>
+            <li><a href="./PHP-course-operation/GetPost/bmi-input.php">傳值</a></li>
+            <li><a href="./PHP-course-operation/GetPost/login.php">登入檢查</a></li>
+            <li><a href="./PHP-course-operation/GetPost/calendar.php">萬年曆</a></li>
+            <li><a href="./PHP-course-operation/GetPost/calendar2.php">萬年曆2</a></li>
+            <li><a href="./PHP-course-operation/session/login.php">會員登入</a></li>
+            <li><a href="./PHP-course-operation/include/index.php">學生管理系統</a></li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- 第三區：資料庫連接 -->
+    <div class="section-title">資料庫串接</div>
+    <div class="link-container">
+        <ul>
+            <li><a href="./database/breakfast-shop/index.php">早餐店系統</a></li>
+            <li><a href="./database/food-forum/index.php">美食論壇</a></li>
+        </ul>
+    </div>
+
+    <hr>
+
+    <!-- 第四區：function -->
+    <div class="section-title">function</div>
+    <div class="link-container">
+        <ul>
+            <li><a href="./function/starts/index.php">星星</a></li>
+            <li><a href="./function/calldb_array/index.php">呼叫資料庫陣列</a></li>
+        </ul>
+    </div>
+
+    <hr>
+
+
+</body>
+
+</html>
