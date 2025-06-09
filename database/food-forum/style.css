@@ -1,0 +1,126 @@
+    @import url(https://fonts.googleapis.com/css2?family=Noto+Sans+TC&family=Zhi+Mang+Xing&display=swap);
+
+    /* 全站風格：藥師少女夢幻感 */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: '標楷體', sans-serif;
+        background: linear-gradient(to bottom right, #fceef3, #e9f7f2);
+        color: #5c4a4a;
+        background-image: url('https://www.transparenttextures.com/patterns/white-wall-3.png');
+        /* 輕紋理背景 */
+    }
+
+    /*Header + Nav */
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #a3799f;
+        padding: 1rem 2rem;
+        box-shadow: 0 2px 4px rgba(200, 180, 200, 0.2);
+        border-bottom: 1px solid #e9ddea;
+    }
+
+    /* Logo 區塊 */
+    .logo p {
+        font-family: 'Zhi Mang Xing', cursive;
+        font-size: 1.6rem;
+        color: #f9f0f4;
+        margin: 0;
+    }
+
+    /* 導覽列 */
+    .nav {
+        display: flex;
+        gap: 1rem;
+    }
+
+    /* 導覽按鈕 */
+    .nav a {
+        text-decoration: none;
+        font-size: 1rem;
+        color: #675a67;
+        background-color: #ffffff;
+        padding: 0.4rem 1rem;
+        border-radius: 999px;
+        border: 1px solid #e5d1ec;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 6px rgba(215, 200, 230, 0.15);
+    }
+
+    .nav a:hover {
+        background-color: #d4c3e3;
+        color: #fff;
+        box-shadow: 0 4px 10px rgba(180, 150, 200, 0.25);
+    }
+
+
+    /* main */
+    main {
+        max-width: 900px;
+        margin: 2rem auto;
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 2rem;
+        border-radius: 1.5rem;
+        box-shadow: 0 4px 12px rgba(224, 180, 200, 0.3);
+    }
+    
+
+
+
+
+    /* footer */
+    footer {
+        text-align: center;
+        padding: 1rem;
+        font-size: 0.9rem;
+        color: #aa8888;
+        background-color: #f9f0f4;
+        border-top: 1px dashed #e5cdd3;
+    }
+
+
+    /* 文字區塊美化 */
+
+    h1,
+    h2,
+    h3 {
+        font-family: '標楷體', sans-serif;
+        color: #d76a92;
+    }
+
+    p {
+        line-height: 1.8;
+        font-size: 1.1rem;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    /* 按鈕風格 */
+    .btn {
+        background-color: #f7b7c5;
+        border: none;
+        color: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 1rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #e16b8c;
+    }
+
+    /* 卡片樣式（例如每一篇貼文） */
+    .post-card {
+        background-color: #fff;
+        border: 1px solid #f3dfe8;
+        padding: 1.5rem;
+        border-radius: 1rem;
+        margin-bottom: 1.5rem;
+        box-shadow: 0 2px 6px rgba(233, 200, 220, 0.3);
+    }

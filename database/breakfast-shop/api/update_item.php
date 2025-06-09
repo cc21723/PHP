@@ -1,0 +1,18 @@
+<?php
+echo "<pre>";
+print_r($_POST);
+echo "</pre>";
+
+$dsn="mysql:host=localhost;dbname=store;charset=utf8";
+$pdo= new PDO($dsn, 'root', '');
+$sql="UPDATE `items`
+         SET `name`='{$_POST['name']}',
+             `price`='{$_POST['price']}',
+             `cost`='{$_POST['cost']}',
+             `stock`='{$_POST['stock']}'
+         WHERE `id`='{$_POST['id']}'";
+$pdo->exec($sql);
+
+//回到上一層的首頁
+header("Location: ../index.php");
+?>
