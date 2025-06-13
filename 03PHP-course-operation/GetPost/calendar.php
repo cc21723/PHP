@@ -350,7 +350,7 @@
             <a href="?year=<?= $nextYear; ?>&month=<?= $nextMonth; ?>">下一個月 ➡</a>
         </div>
 
-        <a href="../index.php">⬅ 返回首頁</a>
+        <a href="../../index.html">⬅ 返回首頁</a>
     </div>
 </body>
 

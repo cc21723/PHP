@@ -10,7 +10,7 @@ if($_POST['acc'] == 'admin' && $_POST['pw'] == '1234'){
 
 
 ?>
-<a href="../index.php" style="text-decoration: none;
+<a href="../../index.html" style="text-decoration: none;
     color: #a55a78;
     display: block;
     margin-top: 20px;">⬅ 返回首頁</a>

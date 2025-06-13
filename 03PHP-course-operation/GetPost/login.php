@@ -132,7 +132,7 @@ if(!isset($_GET[''])){
                 <input type="reset" value="清空內容">
             </div>
         </form>
-        <a href="../index.php">⬅ 返回首頁</a>
+        <a href="../../index.html">⬅ 返回首頁</a>
     </div>
 
     <?php

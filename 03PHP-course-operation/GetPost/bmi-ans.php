@@ -105,7 +105,7 @@
         }
         ?>
         <a href="bmi-input.php">⬅ 返回上一頁</a>
-        <a href="../index.php">⬅ 返回首頁</a>
+        <a href="../../index.html">⬅ 返回首頁</a>
     </div>
 </body>
 

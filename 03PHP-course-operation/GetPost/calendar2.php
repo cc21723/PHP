@@ -227,7 +227,7 @@
             ?>
         </div>
 
-        <a class="a-style" href="../index.php">⬅ 返回首頁</a>
+        <a class="a-style" href="../../index.html">⬅ 返回首頁</a>
     </div>
 </body>
 
