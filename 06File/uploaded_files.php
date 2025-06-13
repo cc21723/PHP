@@ -1,3 +1,81 @@
+<style>
+    body {
+        background: linear-gradient(to bottom right, #fdf2f8, #e0f7fa);
+        font-family: 'Segoe UI', sans-serif;
+        color: #4a4a4a;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+    }
+
+    h1.header {
+        color: #b65e8b;
+        text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        margin-bottom: 2rem;
+    }
+
+    form {
+        background-color: #fff;
+        padding: 2rem 3rem;
+        border-radius: 20px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 1.1rem;
+    }
+
+    input[type="file"] {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+        background-color: #fafafa;
+    }
+
+    button[type="submit"] {
+        background-color: #f48fb1;
+        color: white;
+        border: none;
+        padding: 0.6rem 1.2rem;
+        font-size: 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #ec407a;
+    }
+
+    .a-style {
+        display: inline-block;
+        margin-top: 1rem;
+        text-decoration: none;
+        color: #6a1b9a;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+    .a-style:hover {
+        color: #ad1457;
+    }
+
+    img {
+        max-width: 300px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(100, 100, 100, 0.1);
+        margin-top: 1rem;
+    }
+</style>
+
 <?php
 echo "<pre>";
 print_r($_POST);
