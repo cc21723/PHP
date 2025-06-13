@@ -19,9 +19,9 @@
 <body>
  <h1 class="header">檔案上傳練習</h1>
  <!----建立你的表單及設定編碼----->
-    <form action="uploaded_files.php" method="post">
+    <form action="uploaded_files.php" method="post" enctype="multipart/form-data">
         <label for="file">選擇檔案上傳：</label>
-        <input type="file" name="file" id="file" require>
+        <input type="file" name="myfile" id="file" require>
         <button type="submit">上傳檔案</button>
     </form>
 
@@ -30,6 +30,6 @@
 
 <!----建立一個連結來查看上傳後的圖檔---->  
 
-
+    <a class="a-style" href="../../index.html">⬅ 返回首頁</a>
 </body>
 </html>
