@@ -277,7 +277,8 @@ include_once "db.php";
 
 
 
-
+<!-- end -->
+    <a class="a-style" href="../../index.html">⬅ 返回首頁</a>
 </body>
 
 </html>
