@@ -1,13 +1,3 @@
-<?php
-
-/**
- * 1.建立表單
- * 2.建立處理檔案程式
- * 3.搬移檔案
- * 4.顯示檔案列表
- */
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>檔案上傳</title>
+    <title>編輯資料</title>
     <link rel="stylesheet" href="style.css">
     <style>
         body {
@@ -102,6 +92,10 @@
             background-color: #9f6fa0;
         }
 
+        img{
+            max-width: 64px;
+            max-height: 64px;
+        }
         .a-style {
             display: inline-block;
             margin-top: 2rem;
@@ -122,60 +116,49 @@
 </head>
 
 <body>
-    <h1 class="header">檔案上傳練習</h1>
+    <h1 class="header">編輯資料</h1>
     <!----建立你的表單及設定編碼----->
 
-    <form action="uploaded_files.php" method="post" enctype="multipart/form-data">
-        <div id="uploads">
-            <div class="form-group">
-                <label>檔案格式：</label>
-                <select name="type[]" id="type">
-                    <option value="image">影像</option>
-                    <option value="document">文件</option>
-                    <option value="video">影片</option>
-                    <option value="music">音樂</option>
-                </select>
-                <label for="name">選擇檔案上傳：</label>
-                <input type="file" name="name[]" id="name" required>
-                <label>備註：</label>
-                <textarea name="description[]" id="description"></textarea>
-            </div>
-
-        </div>
+    <?php
+    include_once "db.php";
+    $row = find("uploads", $_GET['id']);
+    ?>
+    <form action="save_upload.php" method="post" enctype="multipart/form-data">
+        
+        <?php
+        switch ($row['type']) {
+            case 'image':
+                echo "<img src='./files/{$row['name']}' alt='檔案預覽'>";
+                break;
+            case 'document':
+                echo "<img src='./icon/document.png' alt='文件預覽'>";
+                break;
+            case 'video':
+                echo "<img src='./icon/video.png' alt='影片預覽'>";
+                break;
+            case 'music':
+                echo "<img src='./icon/music.png' alt='音樂預覽'>";
+                break;
+            default:
+                echo "<img src='./icon/others.png' alt='未知檔案類型'>";
+        }
+        ?>
+        <label>檔案格式：</label>
+        <select name="type" id="type">
+            <option value="image" <?= ($row['type'] == 'image') ? 'selected' : ''; ?>>影像</option>
+            <option value="document" <?= ($row['type'] == 'document') ? 'selected' : ''; ?>>文件</option>
+            <option value="video" <?= ($row['type'] == 'video') ? 'selected' : ''; ?>>影片</option>
+            <option value="music" <?= ($row['type'] == 'music') ? 'selected' : ''; ?>>音樂</option>
+        </select>
+        <label for="name">選擇檔案上傳：</label>
+        <input type="file" name="name" id="name" required>
+        <label>備註：</label>
+        <textarea name="description" id="description"><?= $row['description']; ?></textarea>
+        <input type="hidden" name="id" value="<?= $row['id']; ?>">
         <div class="btns">
-            <button id="More">再加一筆</button>
             <button type="submit">上傳檔案</button>
         </div>
     </form>
-
-
-
-
-    <!----建立一個連結來查看上傳後的圖檔---->
-    <script>
-        $("#More").on("click", function() {
-            let formGroup = `
-            <div class="form-group">
-                <label for="name">選擇檔案上傳：</label>
-                <input type="file" name="name[]" id="name" required>
-            
-                <select name="type[]" id="type">
-                    <option value="image">影像</option>
-                    <option value="document">文件</option>
-                    <option value="video">影片</option>
-                    <option value="music">音樂</option>
-                </select>
-            
-                <textarea name="description[]" id="description"></textarea>
-            </div>`
-            $("#uploads").append(formGroup);
-            $(".form-group").removeClass("display-flex");
-            $(".form-group").addClass("display-flex");
-        });
-    </script>
-
-
-
 
     <!-- end -->
     <a class="a-style" href="../../index.html">⬅ 返回首頁</a>

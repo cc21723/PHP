@@ -81,9 +81,9 @@ echo "<pre>";
 print_r($_POST);
 print_r($_FILES);
 echo "</pre>";
-
+include_once "db.php";
 //自訂義檔名
-$fileName=date("YmdHis")."_".rand(1000,9999).".".explode(".",$_FILES['myfile']['tmp_name'])[1];
+// $fileName=date("YmdHis")."_".rand(1000,9999).".".explode(".",$_FILES['myfile']['tmp_name'])[1];
 
 // 取得原始檔案名稱（注意可能包含副檔名）
 // $originalName = $_FILES['myfile']['name'];
@@ -94,9 +94,36 @@ $fileName=date("YmdHis")."_".rand(1000,9999).".".explode(".",$_FILES['myfile']['
 // 將檔案從暫存區移動到 ./files 資料夾，保留原始檔名
                     // 暫存檔路徑                   //目標    // 儲存目的地：files 資料夾 + 原始檔名
 // move_uploaded_file($_FILES['myfile']['tmp_name'],'./files/'.$_FILES['myfile']['tmp_name']);
-move_uploaded_file($_FILES['myfile']['tmp_name'],'./files/'.$fileName);
+// move_uploaded_file($_FILES['myfile']['tmp_name'],'./files/'.$fileName);
+
+// 逐一處理 $_FILES['name']['tmp_name'] 陣列中的每一個檔案
+foreach($_FILES['name']['tmp_name'] as $key => $tmp_name){
+
+    // 取得目前檔案的原始檔名
+    $name = $_FILES['name']['name'][$key];
+
+    // 取得對應的檔案類型（從 POST 表單中傳來的 type 陣列）
+    $type = $_POST['type'][$key];
+
+    // 取得對應的檔案說明（從 POST 表單中傳來的 description 陣列）
+    $description = $_POST['description'][$key];
+
+    // 將暫存檔案搬移到指定資料夾（此處為 ./files/）並保留原始檔名
+    move_uploaded_file($tmp_name, './files/'.$name);
+
+    // 輸出一段 SQL 語句到畫面上（方便除錯或查看）
+    echo "insert into uploads(`name`,`type`,`description`) values ('$name','$type','$description')";
+    echo "<br>";
+
+    // 執行實際的 SQL 插入動作，將資料寫入 uploads 資料表中
+    q("insert into uploads(`name`,`type`,`description`) values ('$name','$type','$description')");
+}
 
 
+
+header("location:manage.php?msg=檔案上傳成功");
 ?>
 
-<img src="./files/<?=$fileName?>" >
+<!-- <img src="./files/<?
+//  =$fileName
+?>" > -->
