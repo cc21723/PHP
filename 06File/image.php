@@ -19,6 +19,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>文字檔案匯入</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* 返回首頁 */
+        .a-style {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.6rem 1.2rem;
+            background-color: #e1bee7;
+            color: #4a3d4f;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .a-style:hover {
+            background-color: #d1a5dd;
+        }
+    </style>
 </head>
 <body>
 <h1 class="header">圖形處理練習</h1>
