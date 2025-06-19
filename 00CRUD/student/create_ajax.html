@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  
+    <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to right, #fbeaff, #fff0f5);
+      font-family: 'Quicksand', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    form {
+      background: #ffffffdd;
+      padding: 30px 40px;
+      border-radius: 18px;
+      box-shadow: 0 8px 20px rgba(243, 177, 215, 0.3);
+      border: 2px dashed #f4a8c6;
+      width: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    h1 {
+      font-family: 'Zhi Mang Xing', cursive;
+      font-size: 28px;
+      color: #e16b8c;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"] {
+      padding: 10px 12px;
+      border: 1.5px solid #f2c1d1;
+      border-radius: 10px;
+      font-size: 16px;
+      background-color: #fffafc;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    input[type="text"]:focus {
+      border-color: #e16b8c;
+      box-shadow: 0 0 5px #f5b4c6;
+      outline: none;
+    }
+
+    input[type="submit"] {
+      background: #e16b8c;
+      color: white;
+      border: none;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-weight: bold;
+    }
+
+    input[type="submit"]:hover {
+      background: #d85d80;
+    }
+
+    input::placeholder {
+      color: #cfa8b5;
+    }
+
+    .a-style {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.6rem 1.2rem;
+      background-color: #e1bee7;
+      color: #4a3d4f;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    .a-style:hover {
+      background-color: #d1a5dd;
+    }
+  </style>
+</head>
+
+<body>
+  <form action="./data/store.php" method="get" id="myForm">
+    <input type="text" name="name" value="amy" placeholder="輸入名字">
+    <input type="text" name="mobile" value="0900" placeholder="輸入電話">
+    <input type="submit" value="送出">
+  </form>
+
+  <script>
+    $(document).ready(function () {
+
+      const myForm = $('#myForm');
+
+      myForm.submit(function (e) {
+        e.preventDefault();
+        let confirmed = confirm('是否送出');
+        console.log('confirmed', confirmed);
+
+        if (!confirmed) {
+          return false;
+        }
+
+        console.log('ok');
+
+        // ajax call php data
+        let url = "./data/store.php";
+        let data = $(this).serializeArray();
+        console.log('data', data);
+
+        //dataType
+        $.ajax({
+          type: "get",
+          url: url,
+          data: data,
+          dataType: "json",
+          success: function (response) {
+            console.log('response', response);
+
+          }
+        });
+      });
+
+    });
+  </script>
+</body>
+
+</html>
