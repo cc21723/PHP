@@ -66,7 +66,6 @@
     echo "age: " . $jason->getAge();
     echo "<br>";
     echo $jason->greet();
-
     echo "<hr>";
 
     // echo "不要直接改變數屬性 錯誤示範";
@@ -77,8 +76,7 @@
     // echo "age: " . $jason->age;
     // echo "<br>";
     // echo $jason->greet();
-
-    echo "<hr>";
+    // echo "<hr>";
 
     $jason->setName('Mary');
     $jason->setAge(20);
@@ -87,7 +85,7 @@
     echo "age: " . $jason->getAge();
     echo "<br>";
     echo $jason->greet();
-
+    echo "<hr>";
     ?>
 
     <h1>物件導向三大特性</h1>
@@ -127,6 +125,13 @@
     echo "<br>";
     $woman->greet();
     ?>
+    <hr>
+    <h2>封裝</h2>
+
+
+
+    <hr>
+    <h2>多型</h2>
 
 </body>
 
