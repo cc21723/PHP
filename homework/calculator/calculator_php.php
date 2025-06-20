@@ -1,29 +1,4 @@
-<?php
-include './data/data.php';
-$result = '';
-$num1 = $_GET['num1'] ?? '';
-$num2 = $_GET['num2'] ?? '';
-$opt = $_GET['opt'] ?? '';
-
-if (is_numeric($num1) && is_numeric($num2) && $opt) {
-    switch ($opt) {
-        case '+':
-            $result = $num1 + $num2;
-            break;
-        case '-':
-            $result = $num1 - $num2;
-            break;
-        case '*':
-            $result = $num1 * $num2;
-            break;
-        case '/':
-            $result = ($num2 != 0) ? $num1 / $num2 : '不能除以 0';
-            break;
-        default:
-            $result = '無效的運算符號';
-    }
-}
-?>
+<?php include './data/calculator_logic.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -95,7 +70,7 @@ if (is_numeric($num1) && is_numeric($num2) && $opt) {
             transform: scale(1.05);
         }
 
-        #resultP {
+        #result {
             margin-top: 2rem;
             font-size: 1.2rem;
             background-color: #ffffffcc;
@@ -132,21 +107,21 @@ if (is_numeric($num1) && is_numeric($num2) && $opt) {
 <body>
     <div class="container">
         <form action="" method="get">
-            <input type="number" name="num1" id="num1" value="<?= htmlspecialchars($num1) ?>" />
+            <input type="number" name="num1" id="num1" value="<?= ($num1) ?>" />
             <select name="opt" id="opt">
                 <option value="+" <?= $opt == '+' ? 'selected' : '' ?>>+</option>
                 <option value="-" <?= $opt == '-' ? 'selected' : '' ?>>-</option>
                 <option value="*" <?= $opt == '*' ? 'selected' : '' ?>>*</option>
                 <option value="/" <?= $opt == '/' ? 'selected' : '' ?>>/</option>
             </select>
-            <input type="number" name="num2" id="num2" value="<?= htmlspecialchars($num2) ?>" />
+            <input type="number" name="num2" id="num2" value="<?= ($num2) ?>" />
             <p class="tac">
                 <button type="submit" id="myBtn">送出</button>
             </p>
             <hr>
             <?php if ($result !== ''): ?>
                 <div id="result">
-                    <?= htmlspecialchars($num1) . " {$opt} " . htmlspecialchars($num2) . " = " . htmlspecialchars($result) ?>
+                    <?= ($num1) . " {$opt} " . ($num2) . " = " . ($result) ?>
                 </div>
             <?php endif; ?>
             <hr>
