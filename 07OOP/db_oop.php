@@ -126,5 +126,8 @@ dd($Item->all());
 // DB::dd($Item->all());
 
 dd($Item->find(4));
+//新增商品到Sales
 // dd($Sales->save(['item_id'=>3,'quantity'=>2,'no'=>1015]));
-dd($Item->save(['name'=>'大腸麵線','cost'=>25,'stock'=>50,'price'=>55]));
+
+//新增商品到Item
+// dd($Item->save(['name'=>'大腸麵線','cost'=>25,'stock'=>50,'price'=>55]));
