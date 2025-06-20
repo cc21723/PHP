@@ -91,25 +91,45 @@
     <h1>物件導向三大特性</h1>
     <h2>繼承</h2>
     <?php
+    interface PersonInterface
+    {
+        public function getGender();
+        public function say();
+    }
 
     //繼承了上面類別class的Person
-    class Man extends Person
-    {
+    class Man extends Person implements PersonInterface{
         private $gender = '男性';
+        public static  $skin='yellow';
 
         function getGender()
         {
             return $this->gender;
         }
+        function say(){
+            
+        }
+        static function getSkin(){
+        return self::$skin;
+    }  
     }
-    class WoMan extends Person
+
+    
+    class WoMan extends Person implements PersonInterface
     {
         private $gender = '女性';
+        public $skin='white';
 
         function getGender()
         {
             return $this->gender;
         }
+        function say(){
+
+        }
+        static function getSkin(){
+        return self::$skin;
+    }  
     }
     $man = new Man('Jhon', 25);
     echo "name: " . $man->getName();
@@ -125,6 +145,7 @@
     echo "<br>";
     $woman->greet();
     ?>
+    
     <hr>
     <h2>封裝</h2>
 
