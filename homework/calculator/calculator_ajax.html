@@ -137,7 +137,7 @@
                 e.preventDefault();
               
                 // ajax 呼叫data
-                let url = "./data/data_ajax.php";
+                let url = "./data/calculator_logic.php";
                 //serializeArray將表單中的欄位資料轉換成「物件陣列」
                 let data = $(this).serializeArray();
                 console.log('data', data);
@@ -159,23 +159,8 @@
                         // 抓opt值
                         let optValue = (response.opt);
 
-                        let result;
-                        switch (optValue) {
-                            case '+':
-                                result = myValue1 + myValue2;
-                                break;
-                            case '-':
-                                result = myValue1 - myValue2;
-                                break;
-                            case '*':
-                                result = myValue1 * myValue2;
-                                break;
-                            case '/':
-                                result = myValue2 !== 0 ? myValue1 / myValue2 : '不能除以0';
-                                break;
-                            default:
-                                break;
-                        }
+                        let result = response.result;
+                       
 
                         // result
                         console.log('result = ', result);
@@ -185,8 +170,6 @@
                         $('#resultP').text(`${myValue1} ${optValue} ${myValue2} = ${result}`); 
                     }
                 });
-
-
             });
         });
     </script>
