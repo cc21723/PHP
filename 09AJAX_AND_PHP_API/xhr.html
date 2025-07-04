@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>XMLHttpRequest</title>
+    <link rel="shortcut icon" href="#" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* 全站字體與背景 */
+        body {
+            font-family: "Noto Sans TC", "Segoe UI", sans-serif;
+            background: #f8f9fa;
+            margin: 0;
+            padding: 2rem;
+            color: #333;
+        }
+
+        /* 標題 */
+        .header {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #007bff;
+            margin-bottom: 1.5rem;
+        }
+        .title {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+        /* 活動清單容器 */
+        ul {
+            list-style: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* 每一筆活動樣式 */
+        ul li {
+            background: #ffffff;
+            margin-bottom: 1rem;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        ul li:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        ul li h3 {
+            margin: 0 0 0.5rem;
+            color: #333;
+        }
+
+        ul li p {
+            margin: 0.2rem 0;
+            font-size: 0.95rem;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="header">XMLHttpRequest</h1>
+    <div class="title"></div>
+    <h4></h4>
+    <ul></ul>
+
+</body>
+
+</html>
+<script>
+    /********************************************************
+    * 1.api網址  https://kktix.com/events.json
+    * 2.宣告一個XMLHttpRequest物件
+    * 3.建立請求的各項設定及實質內容
+    * 4.建立得到回應時的各項行為
+    * 5.送出請求
+    ********************************************************/
+
+    // 1. 宣告 XMLHttpRequest 物件
+    let xhr = new XMLHttpRequest();
+
+    // 2. 建立請求的各項設定及實質內容
+    xhr.open('get', 'https://kktix.com/events.json');
+
+    // 3. 指定回應資料類型為 JSON
+    xhr.responseType = 'json';
+
+    // 4. 建立得到回應時的各項設定及行為
+    xhr.onload = function () {
+        var type = xhr.getResponseHeader("Content-Type"); //類型
+        var status = xhr.status  //狀態
+        // var response = xhr.responseText //純文字
+        var response = xhr.responseType //收原本的型態
+
+        // console.log(type,status,response);
+        // let data = JSON.parse(response);
+
+        // 直接取得 JavaScript 物件，不需要 JSON.parse()
+        let data = xhr.response;
+        console.log(data);
+
+
+        let events = data.entry; // 從資料中取出活動清單（陣列）
+
+
+        let li = ''; // 宣告一個空字串，用來累加 <li> HTML 標籤內容
+
+        // 用 forEach 迴圈逐一處理每個活動
+        events.forEach((event, idx) => {
+            let rawContent = event.content;  // 原始字串
+            let lines = rawContent.split('\n');  // 先用換行分隔
+
+            let time = lines[0].replace('●時間：', '').trim(); // 取第一行並移除前綴
+            let location = lines[1].replace('地點：', '').trim(); // 取第二行並移除前綴
+
+            // 把每個活動的 title 包在 <li> 中，並加到 li 字串裡
+            // li = li + "<li>" + event.title + "</li>";
+            li += `
+               <li>
+                    <h3>${event.title}</h3>
+                    <p><strong>時間：</strong>${time}</p>
+                    <p><strong>地點：</strong>${location}</p>
+                    <p>${event.summary}</p>
+                    <a href="${event.url}" target="_blank">查看活動詳情</a>
+                </li>
+                `;
+
+        });
+        // 把組合好的 <li> 結構插入到第一個 <ul> 裡，顯示在畫面上
+        document.getElementsByTagName('ul')[0].innerHTML = li;
+        document.getElementsByClassName('title')[0].innerHTML = data.title;
+    }
+
+    // 5. 送出請求
+    xhr.send();
+
+
+</script>
