@@ -1,44 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>jQuery</title>
-    <link rel="shortcut icon" href="#" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-      <!-------引入jQuery函式庫------->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>jQuery</title>
+  <link rel="shortcut icon" href="#" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <!-------引入jQuery函式庫------->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
+    integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <style>
+    /* 全頁基本設定 */
+    body {
+      font-family: "Noto Sans TC", "Segoe UI", sans-serif;
+      background-color: #f4f6f9;
+      margin: 0;
+      padding: 2rem;
+      color: #333;
+    }
+
+    /* 標題 */
+    .header {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #007bff;
+      margin-bottom: 1.5rem;
+    }
+
+    /* JSON 中 title 顯示處 */
+    .title {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+
+    /* 活動列表 ul 設定 */
+    ul {
+      list-style: none;
+      padding: 0;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* 每一筆活動 li 樣式 */
+    ul li {
+      background-color: #fff;
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease-in-out;
+    }
+
+    ul li:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* 活動標題文字 */
+    ul li h3 {
+      margin: 0;
+      font-size: 1.3rem;
+      color: #333;
+    }
+  </style>
 </head>
+
 <body>
-    <h1 class="header">jQuery</h1>
-    <div class="title"></div>
-    <h4></h4>
-    <ul></ul>
-    
+  <h1 class="header">jQuery</h1>
+  <div class="title"></div>
+  <h4></h4>
+  <ul></ul>
+
 </body>
+
 </html>
 <script>
-    /********************************************************
-    * 1.api網址  https://kktix.com/events.json
-    * 2.選擇$.ajax()、$.get()、$.post()其中一種方式
-    * 3.建立回呼函式(call back function)來處理回應時的各項行為
-    * 4.建立錯誤處理
-    ********************************************************/
-     
-    //利用$.ajax()方法傳送請求並取得回應
-    /* $.ajax(
-      {
-        url:'',
-        type:'',
-        success:,
-        error:,
-        complete:
-      }
-    ) */   
+  /********************************************************
+  * 1.api網址  https://kktix.com/events.json
+  * 2.選擇$.ajax()、$.get()、$.post()其中一種方式
+  * 3.建立回呼函式(call back function)來處理回應時的各項行為
+  * 4.建立錯誤處理
+  ********************************************************/
 
-    
-    //利用$.get()方法傳送請求並取得回應
+  //利用$.ajax()方法傳送請求並取得回應
+  // $.ajax(
+  //   {
+  //     url: 'https://kktix.com/events.json',
+  //     type: 'get',
+  //     success: (res) => {
+  //       let events = res.entry; // 從資料中取出活動清單（陣列）
+  //       let li = ''; // 宣告一個空字串，用來累加 <li> HTML 標籤內容
+  //       // 用 forEach 迴圈逐一處理每個活動
+  //       events.forEach((event, idx) => {
+  //         // 把每個活動的 title 包在 <li> 中，並加到 li 字串裡
+  //         let li = "<li>" + event.title + "</li>";
+  //         $('ul').append(li);
+
+  //       });
+  //       // 把組合好的 <li> 結構插入到第一個 <ul> 裡，顯示在畫面上
+  //       $('.title').html(res.title);
+
+  //     },
+  //   }
+  // )
 
 
-  </script>
+  //利用$.get()方法傳送請求並取得回應
+  $.get("https://kktix.com/events.json",
+    function (res) {
+      let events = res.entry; // 從資料中取出活動清單（陣列）
+      let li = ''; // 宣告一個空字串，用來累加 <li> HTML 標籤內容
+      // 用 forEach 迴圈逐一處理每個活動
+      events.forEach((event, idx) => {
+        // 把每個活動的 title 包在 <li> 中，並加到 li 字串裡
+        let li = "<li>" + event.title + "</li>";
+        $('ul').append(li);
+
+      });
+      // 把組合好的 <li> 結構插入到第一個 <ul> 裡，顯示在畫面上
+      $('.title').html(res.title);
+    }
+  );
+
+</script>
