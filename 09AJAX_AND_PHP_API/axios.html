@@ -1,36 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>axios</title>
-    <link rel="shortcut icon" href="#" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-    <!-----引入axios函式庫------->
+    <link rel="stylesheet" href="style.css" />
+    <!-- jQuery & Axios -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.10.0/axios.min.js"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 2rem;
+            color: #333;
+        }
+
+        .header {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #007bff;
+            margin-bottom: 1.5rem;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        ul li {
+            background-color: #fff;
+            padding: 1.2rem 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+
+        ul li:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
+
 <body>
     <h1 class="header">axios</h1>
     <div class="title"></div>
-    <h4></h4>
     <ul></ul>
-    
+
 </body>
+
 </html>
 <script>
-/********************************************************
-* 1.api網址  https://kktix.com/events.json
-* 2.發起一個axios請求
-* 3.建立回呼函式(call back function)來處理回應時的各項行為
-* 4.建立錯誤處理
-********************************************************/
+    /********************************************************
+    * 1.api網址  https://kktix.com/events.json
+    * 2.發起一個axios請求
+    * 3.建立回呼函式(call back function)來處理回應時的各項行為
+    * 4.建立錯誤處理
+    ********************************************************/
 
-//發起一個axios請求
+    // 發起一個 axios 請求
+    axios.get('https://kktix.com/events.json')
+
+        // 建立回呼函式 (call back function) 來處理回應時的各項行為
+        .then(function (response) {
+            
+            const events = response.data.entry || [];
+            let html = '';
+
+            events.forEach((event) => {
+                let rawContent = event.content;  // 原始字串
+                let lines = rawContent.split('\n');  // 先用換行分隔
+                let time = lines[0].replace('時間：', '').trim(); // 取第一行並移除前綴
+                let location = lines[1].replace('地點：', '').trim(); // 取第二行並移除前綴
+
+                html += `<li>
+                    <h3>${event.title}</h3>
+                    <p><strong>時間：</strong>${time}</p>
+                    <p><strong>地點：</strong>${location}</p>
+                    <p>${event.summary}</p>
+                    <a href="${event.url}" target="_blank">查看活動詳情</a>
+                    </li>`;
+            });
+
+            $('ul').html(html);
+            $('.title').html(response.data.title || '活動列表');
+        })
+
+        // 建立錯誤處理
+        .catch(function (err) {
+            console.error('發生錯誤：', err);
+            $('.title').html('⚠️ 無法載入活動資料');
+        });
 
 
-//建立回呼函式(call back function)來處理回應時的各項行為
-
-
-//建立錯誤處理
 
 </script>

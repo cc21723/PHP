@@ -131,7 +131,7 @@
                 let rawContent = event.content;  // 原始字串
                 let lines = rawContent.split('\n');  // 先用換行分隔
 
-                let time = lines[0].replace('●時間：', '').trim(); // 取第一行並移除前綴
+                let time = lines[0].replace('時間：', '').trim(); // 取第一行並移除前綴
                 let location = lines[1].replace('地點：', '').trim(); // 取第二行並移除前綴
 
                 // 把每個活動的 title 包在 <li> 中，並加到 li 字串裡
