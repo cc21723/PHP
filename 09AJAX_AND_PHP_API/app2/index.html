@@ -64,6 +64,11 @@
       transform: scale(1.05);
     }
 
+    .class-nav button.active {
+      background-color: #e2ccfa;
+      transform: scale(1.05);
+    }
+
     /* 表格樣式 */
     table {
       width: 90%;
@@ -216,6 +221,9 @@
       $('.class-nav button').on('click', function () {
         let classroom = $(this).data('classroom');
         getClassStudents(classroom);
+
+        $('.class-nav button').removeClass('active'); //移除所有的按鈕的 active 類別
+        $(this).addClass('active'); // 為當前按鈕添加 active 類別
       });
     })
   }
@@ -240,7 +248,7 @@
           <td>${student.telphone}</td>
           <td>
             <button class='edit-btn' data-id='${student.id}'>編輯</button>
-            <button class='delete-btn' data-id='${student.id}'>刪除</button>
+            <button class='delete-btn' data-id='${student.id}' onclick='del(${student.id})'>刪除</button>
           </td>
         </tr>
         `);
@@ -264,8 +272,21 @@
   }
 
   //刪除資料的函式
-  function del() {
+  // $('delete-btn').on("click",()=>{})
 
+  function del(id) {
+    if (confirm("確定要刪除嗎")) {
+      $.post("./api/delete.php", { id }, function (res) {
+        console.log(res);
+
+        if (res.success) {
+            alert("刪除成功");
+            getClassStudents($('.class-nav button.active').data('classroom'));
+          } else {
+            alert("刪除失敗");
+          }
+        })
+    }
   }
 
 </script>
