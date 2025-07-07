@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新增學生資料</title>
+  <style>
+    *{
+        box-sizing: border-box;
+    }
+    
+    body {
+      font-family: "Segoe UI", "Noto Sans TC", sans-serif;
+      background-color: #f9f9fb;
+      margin: 0;
+      padding: 2rem;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #6c3483;
+      margin-bottom: 2rem;
+    }
+
+    form {
+      max-width: 700px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+      color: #5e3370;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-color: #fef9ff;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #c59efc;
+      outline: none;
+    }
+
+    .form-actions {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    button {
+      padding: 0.7rem 1.5rem;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      background-color: #d6f5e3;
+      color: #256d4f;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #b9ebcf;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>新增學生資料</h1>
+  <form action="save_student.php" method="post">
+    <div class="form-group">
+      <label for="uni_id">學號</label>
+      <input type="text" id="uni_id" name="uni_id" required>
+    </div>
+
+    <div class="form-group">
+      <label for="classroom">班級</label>
+      <input type="number" id="classroom" name="classroom" required>
+    </div>
+
+    <div class="form-group">
+      <label for="seat_num">座號</label>
+      <input type="number" id="seat_num" name="seat_num">
+    </div>
+
+    <div class="form-group">
+      <label for="name">姓名</label>
+      <input type="text" id="name" name="name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="birthday">出生年月日</label>
+      <input type="date" id="birthday" name="birthday">
+    </div>
+
+    <div class="form-group">
+      <label for="national_id">身分證字號</label>
+      <input type="text" id="national_id" name="national_id">
+    </div>
+
+    <div class="form-group">
+      <label for="address">住址</label>
+      <input type="text" id="address" name="address">
+    </div>
+
+    <div class="form-group">
+      <label for="parent">家長</label>
+      <input type="text" id="parent" name="parent">
+    </div>
+
+    <div class="form-group">
+      <label for="telphone">電話</label>
+      <input type="tel" id="telphone" name="telphone">
+    </div>
+
+    <div class="form-group">
+      <label for="major">科別</label>
+      <input type="text" id="major" name="major">
+    </div>
+
+    <div class="form-group">
+      <label for="secondary">畢業國中</label>
+      <input type="text" id="secondary" name="secondary">
+    </div>
+
+    <div class="form-actions">
+      <button type="submit">送出表單</button>
+    </div>
+  </form>
+</body>
+
+</html>

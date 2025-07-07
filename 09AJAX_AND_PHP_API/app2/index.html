@@ -120,6 +120,30 @@
       background-color: #ffcccc;
     }
 
+    /* 新增學生按鈕區塊置中 */
+    .add {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    /* 新增學生按鈕樣式 */
+    .add-student {
+      background-color: #d6f5e3;
+      color: #256d4f;
+      border: none;
+      border-radius: 12px;
+      padding: 0.6rem 1.5rem;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .add-student:hover {
+      background-color: #b9ebcf;
+      transform: scale(1.05);
+    }
 
     /* 響應式設計 */
     @media (max-width: 600px) {
@@ -144,6 +168,9 @@
 <body>
   <h1 class="header">學生資料管理系統</h1>
   <div class="class-nav"></div>
+  <div class="add">
+    <button class="add-student" onclick="location.href='add_student.html'">新增學生</button>
+  </div>
   <div class="students">
     <table>
       <thead>
