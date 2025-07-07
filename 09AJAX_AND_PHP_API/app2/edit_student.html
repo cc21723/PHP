@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新增學生資料</title>
+    <title>編輯學生資料</title>
     <!-------引入jQuery函式庫------->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
         integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
@@ -89,17 +89,22 @@
 </head>
 
 <body>
-    <h1>新增學生資料</h1>
+    <h1>編輯學生資料</h1>
     <!-- <form action="save_student.php" method="post"> -->
     <form method="post">
         <div class="form-group">
             <label for="uni_id">學號</label>
-            <input type="text" id="uni_id" name="uni_id" required>
+            <input type="text" id="uni_id" name="uni_id" disabled>
         </div>
+
+        <!-- <div class="form-group">
+            <label for="classroom">班級</label>
+            <input type="number" id="classroom" name="classroom" required>
+        </div> -->
 
         <div class="form-group">
             <label for="classroom">班級</label>
-            <input type="number" id="classroom" name="classroom" required>
+            <select name="classroom" id="classroom"></select>
         </div>
 
         <div class="form-group">
@@ -114,12 +119,12 @@
 
         <div class="form-group">
             <label for="birthday">出生年月日</label>
-            <input type="date" id="birthday" name="birthday">
+            <input type="date" id="birthday" name="birthday" disabled>
         </div>
 
         <div class="form-group">
             <label for="national_id">身分證字號</label>
-            <input type="text" id="national_id" name="national_id">
+            <input type="text" id="national_id" name="national_id" disabled>
         </div>
 
         <div class="form-group">
@@ -147,35 +152,76 @@
             <input type="text" id="secondary" name="secondary">
         </div>
 
+        <input type="id" id="id" name="id" hidden>
+
         <div class="form-actions">
-            <button type="button" onclick="add()">送出表單</button>
+            <button type="button" onclick="edit()">送出表單</button>
         </div>
     </form>
 </body>
 <script>
-    function add() {
+    let urlParams = new URLSearchParams(window.location.search);
+    let id = urlParams.get('id');
+    console.log(id);
+
+    getStudent(id);
+    classroonMenu();
+
+    function classroonMenu(classroom) {
+        $.get("./api/classrooms.php",function (classrooms) { 
+            console.log(classrooms);
+            classrooms.forEach(item => {
+                let selected = (item.classroom == classroom)?'selected':'';
+                $("#classroom").append(`<option value="${item.classroom}" ${selected}>${item.name}</option>`);
+            });
+            
+         })
+    }
+
+
+    function getStudent(id) {
+        $.get("./api/get_student.php", { id }, function (student) {
+            console.log(student);
+
+            $('#uni_id').val(student.uni_id);
+            // $('#classroom').val(student.classroom);
+            $('#seat_num').val(student.seat_num);
+            $('#name').val(student.name);
+            $('#birthday').val(student.birthday);
+            $('#national_id').val(student.national_id);
+            $('#address').val(student.address);
+            $('#parent').val(student.parent);
+            $('#telphone').val(student.telphone);
+            $('#major').val(student.major);
+            $('#secondary').val(student.secondary);
+            $('#id').val(student.id);
+            classroonMenu(student.classroom);
+        })
+    }
+    function edit() {
         let data = {
             uni_id: $('#uni_id').val(),
-            classroom:$('#classroom').val(),
-            seat_num:$('#seat_num').val(),
-            name:$('#name').val(),
-            birthday:$('#birthday').val(),
-            national_id:$('#national_id').val(),
-            address:$('#address').val(),
-            parent:$('#parent').val(),
-            telphone:$('#telphone').val(),
-            major:$('#major').val(),
-            secondary:$('#secondary').val()
+            classroom: $('#classroom').val(),
+            seat_num: $('#seat_num').val(),
+            name: $('#name').val(),
+            birthday: $('#birthday').val(),
+            national_id: $('#national_id').val(),
+            address: $('#address').val(),
+            parent: $('#parent').val(),
+            telphone: $('#telphone').val(),
+            major: $('#major').val(),
+            secondary: $('#secondary').val(),
+            id: $('#id').val()
         }
 
-        $.post("./api/save_student.php", data, function(res) {
-            console.log(data,res);
+        $.post("./api/save_student.php", data, function (res) {
+            console.log(data, res);
 
             if (res.success) {
-                alert("新增成功");
+                alert("編輯成功");
                 location.href = "index.html";
             } else {
-                alert("新增失敗：" + res.message);
+                alert("編輯失敗：" + res.message);
             }
         })
     }
