@@ -65,7 +65,7 @@
     }
 
     /* 表格樣式 */
-    .table {
+    table {
       width: 90%;
       margin: 2rem auto;
       border-collapse: collapse;
@@ -75,17 +75,49 @@
       overflow: hidden;
     }
 
-    .table th,
-    .table td {
+    table th,
+    table td {
       padding: 1rem;
       text-align: center;
       border-bottom: 1px solid #eee;
     }
 
-    .table th {
+    table th {
       background-color: #f0dfff;
       color: #5e3370;
       font-weight: bold;
+    }
+
+    /* 操作按鈕通用樣式 */
+    .edit-btn,
+    .delete-btn {
+      padding: 0.4rem 0.8rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin: 0 0.2rem;
+    }
+
+    /* 編輯按鈕樣式 */
+    .edit-btn {
+      background-color: #d1e7ff;
+      color: #084298;
+    }
+
+    .edit-btn:hover {
+      background-color: #a6ceff;
+    }
+
+    /* 刪除按鈕樣式 */
+    .delete-btn {
+      background-color: #ffe5e5;
+      color: #c0392b;
+    }
+
+    .delete-btn:hover {
+      background-color: #ffcccc;
     }
 
 
@@ -112,7 +144,26 @@
 <body>
   <h1 class="header">學生資料管理系統</h1>
   <div class="class-nav"></div>
+  <div class="students">
+    <table>
+      <thead>
+        <tr>
+          <th>學號</th>
+          <th>班級</th>
+          <th>座號</th>
+          <th>姓名</th>
+          <th>生日</th>
+          <th>地址</th>
+          <th>電話</th>
+          <th>操作</th>
+        </tr>
+      </thead>
 
+      <tbody>
+
+      </tbody>
+    </table>
+  </div>
 </body>
 
 </html>
@@ -126,17 +177,49 @@
   ************************************/
   //取得所有班級資料
   getClassrooms();
+
   function getClassrooms() {
     $.get("./api/classrooms.php", function (classrooms) {
       console.log(classrooms);
-      $('class-nav').html('');
+      $('.class-nav').html('');
       classrooms.forEach(item => {
-        $(".class-nav").append(`<button>${item.classroom}</button>`)
+        $(".class-nav").append(`<button data-classroom='${item.classroom}'>${item.name}</button>`)
       });
 
+      $('.class-nav button').on('click', function () {
+        let classroom = $(this).data('classroom');
+        getClassStudents(classroom);
+      });
     })
   }
 
+  getClassStudents('101'); // 預設載入101班級的學生資料
+  //取得班級資料的函式
+  function getClassStudents(classroom) {
+    $(".students tbody").html(''); // 清空現有的學生資料
+    $.get("./api/get_students.php", { classroom }, function (data) {
+      console.log(data);
+
+      //處理取得的班級資料，例如顯示在畫面上
+      data.forEach(student => {
+        $(".students tbody").append(`
+        <tr>
+          <td>${student.uni_id}</td>
+          <td>${student.classname}</td>
+          <td>${student.seat_num}</td>
+          <td>${student.name}</td>
+          <td>${student.birthday}</td>
+          <td>${student.address}</td>
+          <td>${student.telphone}</td>
+          <td>
+            <button class='edit-btn' data-id='${student.id}'>編輯</button>
+            <button class='delete-btn' data-id='${student.id}'>刪除</button>
+          </td>
+        </tr>
+        `);
+      })
+    })
+  }
 
   //新增資料的函式
   function create() {
