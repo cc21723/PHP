@@ -1,50 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>學生資料管理系統</title>
-    <link rel="shortcut icon" href="#" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-    <!---匯入要使用的函式庫--->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>學生資料管理系統</title>
+  <link rel="shortcut icon" href="#" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <!---匯入要使用的函式庫--->
+  <!-------引入jQuery函式庫------->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js"
+    integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <style>
+    /* 全域設定 */
+    body {
+      font-family: "Segoe UI", "Noto Sans TC", sans-serif;
+      background: #f9f9fb;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    /* 頁面標題 */
+    .header {
+      background: linear-gradient(to right, #e0c3fc, #8ec5fc);
+      color: #fff;
+      text-align: center;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      letter-spacing: 2px;
+      border-radius: 0 0 20px 20px;
+    }
+
+    /* 班級導覽按鈕區塊 */
+    .class-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      padding: 0 1rem;
+    }
+
+    /* 每個班級按鈕 */
+    .class-nav button {
+      background-color: #f8e8ff;
+      border: none;
+      border-radius: 12px;
+      padding: 0.7rem 1.2rem;
+      font-size: 1rem;
+      color: #6c3483;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .class-nav button:hover {
+      background-color: #e2ccfa;
+      transform: scale(1.05);
+    }
+
+    /* 表格樣式 */
+    .table {
+      width: 90%;
+      margin: 2rem auto;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .table th,
+    .table td {
+      padding: 1rem;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+
+    .table th {
+      background-color: #f0dfff;
+      color: #5e3370;
+      font-weight: bold;
+    }
 
 
+    /* 響應式設計 */
+    @media (max-width: 600px) {
+      .header {
+        font-size: 1.5rem;
+        padding: 1rem;
+      }
+
+      .class-nav {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .class-nav button {
+        width: 80%;
+        font-size: 1.1rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
   <h1 class="header">學生資料管理系統</h1>
+  <div class="class-nav"></div>
 
-  
 </body>
+
 </html>
 <script>
-/************************************
-* 1.考慮觸發行為的事件
-* 2.建立監聽行為
-* 3.考慮是否需要代入參數
-* 4.是否會有回傳值？回傳值的功用及處理？
-* 5.是否需要更新畫面內容？更新畫面的方法？
-************************************/
+  /************************************
+  * 1.考慮觸發行為的事件
+  * 2.建立監聽行為
+  * 3.考慮是否需要代入參數
+  * 4.是否會有回傳值？回傳值的功用及處理？
+  * 5.是否需要更新畫面內容？更新畫面的方法？
+  ************************************/
+  //取得所有班級資料
+  getClassrooms();
+  function getClassrooms() {
+    $.get("./api/classrooms.php", function (classrooms) {
+      console.log(classrooms);
+      $('class-nav').html('');
+      classrooms.forEach(item => {
+        $(".class-nav").append(`<button>${item.classroom}</button>`)
+      });
+
+    })
+  }
 
 
-//新增資料的函式
-function create(){
+  //新增資料的函式
+  function create() {
 
-}
+  }
 
-//查詢資料的函式
-function query(){
+  //查詢資料的函式
+  function query() {
 
-}
+  }
 
-//編輯資料的函式
-function update(){
+  //編輯資料的函式
+  function update() {
 
-}
+  }
 
-//刪除資料的函式
-function del(){
+  //刪除資料的函式
+  function del() {
 
-}
+  }
 
 </script>
