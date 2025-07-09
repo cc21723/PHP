@@ -1,7 +1,7 @@
 
 <h3 class="mb-4" style="color:#c44a7c;">服務項目管理</h3>
 
-<form action="./api/upload_service.php" method="post" enctype="multipart/form-data">
+<form action="./api/insert_service.php" method="post" enctype="multipart/form-data">
   <div class="mb-3">
     <label for="image" class="form-label">上傳照片</label>
     <input type="file" class="form-control" name="image" id="image" required>
