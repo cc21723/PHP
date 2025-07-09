@@ -31,7 +31,6 @@ include_once './api/auth.php'; // 驗證是否已登入
             box-shadow: 4px 0 10px rgba(0, 0, 0, 0.05);
             display: flex;
             flex-direction: column;
-            /* justify-content: center; */
         }
 
         .sidebar h2 {
@@ -44,7 +43,7 @@ include_once './api/auth.php'; // 驗證是否已登入
             background-color: #f8a6c0;
             color: #fff;
             margin-bottom: 1rem;
-            text-align: left;
+            /* text-align: left; */
             transition: 0.3s ease;
         }
 
@@ -63,6 +62,7 @@ include_once './api/auth.php'; // 驗證是否已登入
             width: 70%;
             padding: 2rem;
             overflow-y: auto;
+            margin: 0 auto;
         }
 
         .text-muted {
@@ -103,7 +103,7 @@ include_once './api/auth.php'; // 驗證是否已登入
             <a href="#" data-page="reserve.php" class="btn btn-lg w-100 nav-link">預約時間圖管理</a>
             <a href="#" data-page="ig_link.php" class="btn btn-lg w-100 nav-link">IG連結管理</a>
             <a href="#" data-page="account.php" class="btn btn-lg w-100 nav-link">帳號管理</a>
-            <a href="./backend/logout.php" class="btn logout btn-sm w-100 mt-3">登出</a>
+            <a href="./backend/logout.php" class="btn logout btn-m w-100 mt-3">登出</a>
         </div>
 
         <!-- 右側內容區 -->

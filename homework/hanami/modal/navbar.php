@@ -9,7 +9,7 @@
             <li class="nav-item"><a class="nav-link nav-ajax" data-page="gallery" href="#">✨ 作品集</a></li>
             <li class="nav-item"><a class="nav-link nav-ajax" data-page="about" href="#">🎀 關於我</a></li>
             <li class="nav-item"><a class="nav-link nav-ajax" data-page="reserve" href="#">✉️預約</a></li>
-            <li class="nav-item"><a class="nav-link" href="./pages/login.php">🔐 管理登入</a></li>
+            <li class="nav-item"><a class="nav-link" href="./front/login.php">🔐 管理登入</a></li>
             <!-- <li class="nav-item"><a class="nav-link" href="../../hanami/pages/login.php">🔐 管理登入</a></li> -->
         </ul>
 

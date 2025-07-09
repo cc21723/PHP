@@ -238,7 +238,7 @@
 
                 const page = $(this).data("page");
                 $("#main-content").fadeOut(100, function() {
-                    $("#main-content").load("./pages/" + page + ".php", function() {
+                    $("#main-content").load("./front/" + page + ".php", function() {
                         $("#main-content").fadeIn(200);
                     });
                 });
