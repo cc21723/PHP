@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html lang="zh-Hant">
 
@@ -78,7 +82,7 @@
 
 
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             background-color: rgba(255, 204, 229, 0.6);
             padding: 0.6em 1.2em;
             border-radius: 25px;
@@ -238,7 +242,7 @@
 
                 const page = $(this).data("page");
                 $("#main-content").fadeOut(100, function() {
-                    $("#main-content").load("./front/" + page + ".php", function() {
+                    $("#main-content").load("./pages/" + page + ".php", function() {
                         $("#main-content").fadeIn(200);
                     });
                 });

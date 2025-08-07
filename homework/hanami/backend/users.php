@@ -1,68 +1,64 @@
 
 <?php
 include_once __DIR__ . '/../api/db.php';
-include_once __DIR__ . '/../api/paginate.php';
+// include_once __DIR__ . '/../api/paginate.php';
 
-list($rows, $totalPages) = paginate("reserve");
-$page = $_GET['page'] ?? 1;
+// list($rows, $totalPages) = paginate("users");
+// $page = $_GET['page'] ?? 1;
 ?>
 
 <table>
     <tr>
         <td></td>
         <td>
-            <h3>預約時間圖片管理</h3>
+            <h3>管理者帳號管理</h3>
         </td>
         <td width="200px">
-            <input type="hidden" name="table" value="reserve">
-            <input type="button" onclick="op('#cover', '#cvr', './modal/reserve.php')" value="新增預約時間圖片">
+            <input type="hidden" name="table" value="user">
+            <input type="button" onclick="op('#cover', '#cvr', './modal/users.php')" value="新增管理者帳號">
         </td>
     </tr>
 </table>
 <form action="./api/edit.php" method="post">
     <table>
         <tr>
-            <th>圖片</th>
-            <th>名稱</th>
-            <th>顯示</th>
+            <th>帳號</th>
+            <th>密碼</th>
             <th>刪除</th>
         </tr>
         <?php
-        $rows = $Reserve->all(" ORDER BY created_at DESC ");
+        $rows = $User->all();
         foreach ($rows as $row):
         ?>
             <tr>
-                <td>
-                    <img src="./images/<?= $row['img']; ?>" style="width:100px; border-radius: 8px;">
-                </td>
 
                 <td>
-                    <input type="text" name="text[]" value="<?= $row['title']; ?>" style="width:90%;">
+                    <input type="text" name="acc[]" value="<?= $row['acc']; ?>" style="width:90%;">
                 </td>
-                <td style="padding-left: 15px;">
-                    <input type="radio" name="sh" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? "checked" : ""; ?>>
+                <td>
+                    <input type="password" name="pw[]" value="<?= $row['pw']; ?>" style="width:90%;">
                 </td>
                 <td style="padding-left: 15px;">
                     <input type="checkbox" name="del[]" value="<?= $row['id']; ?>">
                 </td>
             </tr>
             <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
-            <input type="hidden" name="table" value="reserve">
+            <input type="hidden" name="table" value="users">
         <?php endforeach; ?>
     </table>
 
     <!-- 分頁 UI -->
-    <nav>
+    <!-- <nav>
         <ul class="pagination">
             <?php for ($i = 1; $i <= $totalPages; $i++): ?>
                 <li class="page-item <?= ($page == $i) ? 'active' : '' ?>">
-                    <a class="page-link page-ajax" href="?do=reserve&page=<?= $i ?>" data-page="reserve&page=<?= $i ?>">
+                    <a class="page-link page-ajax" href="?do=user&page=<?= $i ?>" data-page="user&page=<?= $i ?>">
                         <?= $i ?>
                     </a>
                 </li>
             <?php endfor; ?>
         </ul>
-    </nav>
+    </nav> -->
 
     <table>
         <tbody>

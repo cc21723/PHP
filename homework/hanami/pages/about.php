@@ -1,11 +1,12 @@
+<?php include_once "../api/db.php" ?>
 <style>
-  .about-img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    border-radius: 0.5rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
+    .about-img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 0.5rem;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
 </style>
 <div class="container my-5">
     <section>
@@ -28,21 +29,18 @@
         </article>
 
         <!-- 設備與環境展示 -->
+
         <article class="mb-5">
             <h3>設備與環境展示</h3>
             <div class="row g-3">
-                <div class="col-md-4">
-                    <img src="https://i.pinimg.com/736x/0b/71/cf/0b71cf82a327ab9783feb9de6c4595bf.jpg" alt="工作室環境1"
-                        class="about-img img-fluid rounded shadow-sm">
-                </div>
-                <div class="col-md-4">
-                    <img src="https://i.pinimg.com/736x/59/1c/d9/591cd948525d3391b2a9ccab830b5078.jpg" alt="工作室環境2"
-                        class="about-img img-fluid rounded shadow-sm">
-                </div>
-                <div class="col-md-4">
-                    <img src="https://i.pinimg.com/736x/f7/b8/9e/f7b89eb526c0d2073f6b5d2ce874fd55.jpg" alt="工作室設備"
-                        class="about-img img-fluid rounded shadow-sm">
-                </div>
+                <?php
+                $rows = $Place->all(['sh' => 1]);
+                foreach ($rows as $row):
+                ?>
+                    <div class="col-md-4">
+                        <img src="./images/<?= $row['img']; ?>" class="about-img img-fluid rounded shadow-sm" alt="工作室環境">
+                    </div>
+                <?php endforeach; ?>
             </div>
         </article>
 

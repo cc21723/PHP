@@ -1,9 +1,8 @@
-
 <?php
 include_once __DIR__ . '/../api/db.php';
 include_once __DIR__ . '/../api/paginate.php';
 
-list($rows, $totalPages) = paginate("reserve");
+list($rows, $totalPages) = paginate("product");
 $page = $_GET['page'] ?? 1;
 ?>
 
@@ -11,11 +10,11 @@ $page = $_GET['page'] ?? 1;
     <tr>
         <td></td>
         <td>
-            <h3>預約時間圖片管理</h3>
+            <h3>作品集圖片管理</h3>
         </td>
         <td width="200px">
-            <input type="hidden" name="table" value="reserve">
-            <input type="button" onclick="op('#cover', '#cvr', './modal/reserve.php')" value="新增預約時間圖片">
+            <input type="hidden" name="table" value="product">
+            <input type="button" onclick="op('#cover', '#cvr', './modal/product.php')" value="新增作品集圖片">
         </td>
     </tr>
 </table>
@@ -24,11 +23,12 @@ $page = $_GET['page'] ?? 1;
         <tr>
             <th>圖片</th>
             <th>名稱</th>
+            <th>分類</th>
             <th>顯示</th>
             <th>刪除</th>
         </tr>
         <?php
-        $rows = $Reserve->all(" ORDER BY created_at DESC ");
+        $rows = $Product->all(" ORDER BY created_at DESC ");
         foreach ($rows as $row):
         ?>
             <tr>
@@ -39,15 +39,18 @@ $page = $_GET['page'] ?? 1;
                 <td>
                     <input type="text" name="text[]" value="<?= $row['title']; ?>" style="width:90%;">
                 </td>
+                <td>
+                    <input type="text" name="alt[]" value="<?= $row['alt']; ?>" style="width:90%;">
+                </td>
                 <td style="padding-left: 15px;">
-                    <input type="radio" name="sh" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? "checked" : ""; ?>>
+                    <input type="checkbox" name="sh[]" value="<?= $row['id']; ?>" <?= ($row['sh'] == 1) ? "checked" : ""; ?>>
                 </td>
                 <td style="padding-left: 15px;">
                     <input type="checkbox" name="del[]" value="<?= $row['id']; ?>">
                 </td>
             </tr>
             <input type="hidden" name="id[]" value="<?= $row['id']; ?>">
-            <input type="hidden" name="table" value="reserve">
+            <input type="hidden" name="table" value="product">
         <?php endforeach; ?>
     </table>
 
@@ -56,7 +59,7 @@ $page = $_GET['page'] ?? 1;
         <ul class="pagination">
             <?php for ($i = 1; $i <= $totalPages; $i++): ?>
                 <li class="page-item <?= ($page == $i) ? 'active' : '' ?>">
-                    <a class="page-link page-ajax" href="?do=reserve&page=<?= $i ?>" data-page="reserve&page=<?= $i ?>">
+                    <a class="page-link page-ajax" href="?do=product&page=<?= $i ?>" data-page="product&page=<?= $i ?>">
                         <?= $i ?>
                     </a>
                 </li>
